@@ -4,14 +4,15 @@ import './App.css';
 import Login from './Component/Login';
 
 import RegiStration from './Component/Register';
+import Services from './Component/Services';
 
 
 function App() {
   return (
     <div className="App">
 
-      <RegiStration/>
-
+     {/* <RegiStration/> */}
+        <Services/>
     </div>
   );
 }
