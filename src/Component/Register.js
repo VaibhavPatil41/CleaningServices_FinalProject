@@ -1,189 +1,94 @@
-const { useReducer, useState } = require("react");
+import { Component } from "react"
+// import img from "../Component/re"
+
+
 
 export default function  RegiStration(){
     
-    const init = {
-        name :   {value:"",valid:false , touched:false , error:""},
-        address :   {value:"",valid:false , touched:false , error:""},
-        email_id :  {value:"",valid:false , touched:false , error:""},
-        date_of_birth : {value:"",valid:false , touched:false , error:""},
-        gender :    {value:"",valid:false , touched:false , error:""},
-        mobile_num: {value:"",valid:false , touched:false , error:""},
-        role:       {value:"",valid:false , touched:false , error:""},
-        password:   {value:"",valid:false , touched:false , error:""}
-    }
-
-    const reducer = (state,action) => {
-        switch(action.type)
-        {
-            case 'update':
-               
-                const {key,value,touched,valid,error,formValid} = action.data;
-                return {...state,[key]:{value,touched,valid,error},formValid}
-            
-            case 'reset':
-                return init;        
-        }
-    }
-
-    const[user,dispatch]=useReducer(reducer,init)
-    const[msg,setMsg]=useState("")
-
-    const validateData = (key,val) => {
-        let valid = true;
-        let error = ""
-        switch(key)
-        {
-            case 'name':
-                var pattern = /^[A-Z]{1}[a-z]{1,} [A-Z]{1}[a-z]{1,}$/ 
-                if(!pattern.test(val))
-                {
-                    valid = false;
-                    error = "First Letter of Name and Surname Should be Capital "
-                }
-                break;
-            
-            case 'password':
-                var pattern = /^[\w]{8,15}$/ 
-                if(!pattern.test(val))
-                {
-                    valid = false;
-                    error = "Password Size 8-15"
-                }
-                break;
-
-            case 'email_id':
-                var pattern = /^[\w.#-]{4,20}@[\w-]{5,15}\.[a-z]{2,3}$/ 
-                if(!pattern.test(val))
-                {
-                    valid = false;
-                    error = "Please Enter valid Email"
-                }
-                break;
-
-        }
-        return { valid: valid, error: error}
-    }
-
-
-    const handleChange = (key,value) => {
-       
-        const {valid, error} = validateData(key,value);
-
-       
-        let formValid = true;
-        for(let k in user)
-        {
-           
-            if(user[k].valid === false)
-            {
-                formValid = false;
-                break;
-            }
-        }
-        
-        console.log(formValid);
-        console.log("------");
-
-       
-        dispatch({type: "update",data:{key,value,touched:true,valid,error,formValid}})
-    }
-
-    const submitData = (e) =>{
-        e.preventDefault();
-       
-    
-
-    
-        const reqOption={
-            method:"POST",
-            headers:{'content-type':'application/json'},
-            body:JSON.stringify({
-                
-                name : user.name.value,
-                address : user.address.value,
-                email_id : user.email_id.value,
-                date_of_birth : user.date_of_birth.value,
-                gender : user.gender.value,
-                mobile_num : user.mobile_num.value,
-                role : user.role.value,
-                password : user.password.value
-            })
-        };
-    
-        fetch("http://localhost:9000/reg",reqOption)
-        .then(resp => resp.text())
-        .then(str => setMsg(str))
-        
-
-    }
     
 
     return(
-        <div>
-            <form>
-                Name : 
-                <input type="text" name="name" value={user.name.value}
-                onChange={(e)=>{handleChange("name",e.target.value)}}  />
+        // <section class="vh-100 bg-image" style="background-image: ${img};">
+        <section class="vh-100 bg-image" >
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+          <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" >
+                  <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+      
+                    <form>
+
+                    
+                   
+                    
                 
-                <div style={{ display: (!user.name.valid)  ?"block":"none"}}>
-                    {user.name.error}
+
+                    <div class="form-outline mb-3">
+                        
+                        <label for="role">Role &nbsp;</label>
+                        <select >
+                            <option value="0">Select Role</option>
+                            <option value="1">Customer</option>
+                            <option value="2">Service Provider</option>
+                        </select><br/>
+                        
+                    </div>
+
+                    <div class="form-outline mb-3">
+                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1cg">Enter Name</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="email" id="form3Example1cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1cg">Enter Email</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="number" id="form3Example1cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1cg">Enter Contact No</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="number" id="form3Example1cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1cg">Enter Adress</label>
+                    </div>
+                    <div class="form-outline mb-3">
+                        <input type="date" id="form3Example1cg" class="form-control form-control-md" />
+                        <label class="form-label" for="form3Example1cg">Date Of Birth</label>
+                    </div>
+      
+
+                      <div class="form-outline mb-3">
+                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example1cg">Enter Username</label>
+                      </div>
+      
+                      <div class="form-outline mb-3">
+                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example4cdg">Enter password</label>
+                      </div>
+      
+                      <div class="form-outline mb-3">
+                        <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Example4cg">Confirm Password</label>
+                      </div>
+      
+                      <div class="d-flex justify-content-center">
+                        <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                      </div>
+      
+                      <p class="text-center text-muted mt-5 mb-0">Have already an account? 
+                            <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+      
+                    </form>
+      
+                  </div>
                 </div>
-                <br/>
-            
-
-                Address : 
-                <input type="text" name="address" value={user.address.value}
-                onChange={(e)=>{handleChange("address",e.target.value)}}  /><br/>
-                <br/>
-
-
-                Email Adress : <input type="email_id" name="email_id" value={user.email_id.value}
-                onChange={(e)=>{handleChange("email_id",e.target.value)}}  />
-                <div style={{ display: (!user.email_id.valid)  ?"block":"none"}}>
-                    {user.email_id.error}
-                </div><br/>
-                
-                
-                Date of Birth: 
-                <input type="date" name="date_of_birth" value={user.date_of_birth.value}
-                onChange={(e)=>{handleChange("date_of_birth",e.target.value)}}  /><br/><br/>
-
-                
-                Gender:Male
-                <input type="radio" name="gender" value="M"
-                onChange={(e)=>{handleChange("gender",e.target.value)}}  />
-                Female
-                <input type="radio" name="gender" value="F"
-                onChange={(e)=>{handleChange("gender",e.target.value)}}  /><br/><br/>
-
-
-                Mobile num:
-                <input type="number" name="mobile_num" value={user.mobile_num.value}
-                onChange={(e)=>{handleChange("mobile_num",e.target.value)}}  /><br/><br/>
-
-
-                Role:
-                <input type="text" name="role" value={user.role.value}
-                onChange={(e)=>{handleChange("role",e.target.value)}}  /><br/><br/>
-
-
-                Password : 
-                <input type="password" name="password" value={user.password.value}
-                onChange={(e)=>{handleChange("password",e.target.value)}}  />
-                <div style={{ display: (!user.password.valid)  ?"block":"none"}}>
-                    {user.password.error}
-                </div>
-                <br/>
-
-                
-            </form>
-            
-            <input type="submit" value="Insert"
-                disabled={!user.formValid} 
-                onClick={(e)=>{submitData(e)}} />
-            {/* <div>{msg}</div> */}
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
     )
 
 } 
