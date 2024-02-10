@@ -6,13 +6,15 @@ import Login from './Component/Login';
 import RegiStration from './Component/Register';
 import Order from './Component/Order';
 import OrderStatus from './Component/OrderStatus';
+import Services from './Component/Services';
 
 function App() {
   return (
     <div className="App">
-      {/* <RegiStration/> 
-      <Order/>*/}
-      <OrderStatus/>
+       {/* <RegiStration/>  */}
+      {/* <Order/> */}
+      {/* <OrderStatus/> */}
+      <Services/>
     </div>
     
     
