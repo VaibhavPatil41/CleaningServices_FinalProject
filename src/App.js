@@ -1,20 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
-import Login from './Component/Login';
-
 import RegiStration from './Component/Register';
-import Order from './Component/Order';
-import OrderStatus from './Component/OrderStatus';
+import { Link, Route, Routes } from 'react-router-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Login from './Component/Login';
+import Feedback from './Component/Feedback';
 
 function App() {
   return (
-    <div className="App">
-      {/* <RegiStration/> 
-      <Order/>*/}
-      <OrderStatus/>
-    </div>
-    
+    //<RegiStration/>
+    //<Login/>
+    <Feedback/>
+
+    // <div>
+    //   <div className='nav navbar container'>
+    //     <ul className='nav container' style={{ backgroundColor: 'grey', color:'red' }}>
+          
+    //     </ul>
+    //   </div>
+    //   <Routes>
+    //     <Route path="/" element={<RegiStration/>} />       
+    //   </Routes> 
+    // </div>
+
     
   );
 }
