@@ -6,6 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Link } from 'react-router-dom';
 import { ErrorBoundary } from "react-error-boundary";
+import CustWelcome from './WebPages/CustHome';
+import Login from './Component/Login';
+import RegiStration from './Component/Register';
+import AdminWelcome from './WebPages/AdminHome';
+import  SPWelcome from './WebPages/SPHome';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +21,13 @@ root.render(
     </BrowserRouter>
    
 <ErrorBoundary fallback={<div>Something went wrong</div>}>
-  <ExampleApplication />
+  {/* <ExampleApplication /> */}
+  <CustWelcome/>
+  <SPWelcome/>
+  <AdminWelcome/>
+  <Login/>
+  <RegiStration/>
+ 
 </ErrorBoundary>
 
 </React.StrictMode>
