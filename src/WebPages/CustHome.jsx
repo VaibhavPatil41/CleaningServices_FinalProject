@@ -25,7 +25,7 @@ export default function CustWelcome (){
           <li class="nav-item"><a class="nav-link" href="#">Order Status</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Feedback</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="/Home">Logout</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contact us?</a></li>
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"></svg>
