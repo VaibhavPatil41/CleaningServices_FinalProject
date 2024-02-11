@@ -1,5 +1,5 @@
 
-export default function Welcome (){
+export default function AdminWelcome (){
     return (
         <div>
             <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
@@ -21,12 +21,12 @@ export default function Welcome (){
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Order Status</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Feedback</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Approval Requests</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Transaction</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Feedbacks</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact us?</a></li>
+          
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"></svg>
           </a></li>
@@ -38,11 +38,11 @@ export default function Welcome (){
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <div class="col-md-6 p-lg-5 mx-auto my-5">
-      <h1 class="display-5 fw-bold">Welcome To Home Glow Services</h1>
-      <h3 class="fw-normal text-muted mb-3">Connect us for better cleaning experience</h3>
+      <h1 class="display-5 fw-bold">Welcome </h1>
+      <h3 class="fw-normal text-muted mb-3"></h3>
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
         <a class="icon-link" href="#">
-          Learn more
+         
           <svg class="bi"><use ></use></svg>
         </a>
         <a class="icon-link" href="#">

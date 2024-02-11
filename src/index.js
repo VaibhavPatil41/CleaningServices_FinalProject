@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter, Link } from 'react-router-dom';
+import { ErrorBoundary } from "react-error-boundary";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +13,11 @@ root.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  
+   
+<ErrorBoundary fallback={<div>Something went wrong</div>}>
+  <ExampleApplication />
+</ErrorBoundary>
+
 </React.StrictMode>
 );
 
