@@ -1,13 +1,29 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import { login } from "../loggedSlice";
+
 import { Component } from "react"
 // import img from "../Component/re"
 
 export default function  Login(){
     
-    
+    const dispatch = useDispatch()
+    const mystate = useSelector((state) => state.logged)
+
+    //Need to add database crosscheck login credentials 
+
+    let navigate = useNavigate();
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(login());
+        navigate('/home')
+    }
 
     return(
         // <section class="vh-100 bg-image" style="background-image: ${img};">
         <section class="vh-100 bg-image" >
+          <p> Logged in : {mystate.loggedIn.toString()} </p>
+
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
           <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,13 +46,16 @@ export default function  Login(){
       
                            
                       <div class="d-flex justify-content-center">
-                        <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                        <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body"
+                            onClick={handleClick}
+                          >Login</button>
                       </div>
       
                       <p class="text-center text-muted mt-5 mb-0">New User?<a href="#!"
                           class="fw-bold text-body"><u>SignUp Here</u></a></p>
       
                     </form>
+                    
       
                   </div>
                 </div>

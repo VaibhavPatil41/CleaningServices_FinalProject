@@ -1,9 +1,14 @@
+import { useSelector } from "react-redux"
 
+export default function Services(){
 
-export default function Services()
-{
+  
+const mystate = useSelector(state=>state.logged)
+
     return(
         <div className="container-fluid mt-1">
+          <p> Logged in : {mystate.loggedIn.toString()} </p>
+
             <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom bg-dark" >
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
@@ -115,8 +120,9 @@ export default function Services()
         </div>
       </div>
   </div>
-        
+        <p> Logged in : {mystate.loggedIn.toString()} </p>
         </div>
+
 
     )
 }

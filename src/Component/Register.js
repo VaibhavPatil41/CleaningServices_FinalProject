@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux"
+
 import { Component } from "react"
 // import img from "../Component/re"
 
@@ -5,11 +7,13 @@ import { Component } from "react"
 
 export default function  RegiStration(){
     
-    
+  const mystate = useSelector(state=>state.logged)
 
     return(
         // <section class="vh-100 bg-image" style="background-image: ${img};">
         <section class="vh-100 bg-image" >
+          {/* <p> Logged in : {mystate.loggedIn.toString()} </p> */}
+
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
           <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,12 +23,6 @@ export default function  RegiStration(){
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
       
                     <form>
-
-                    
-                   
-                    
-                
-
                     <div class="form-outline mb-3">
                         
                         <label for="role">Role &nbsp;</label>
@@ -77,7 +75,7 @@ export default function  RegiStration(){
                         <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body">Register</button>
                       </div>
       
-                      <p class="text-center text-muted mt-5 mb-0">Have already an account? 
+                      <p class="text-center text-muted mt-5 mb-0">Already have an account? 
                             <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
       
                     </form>
@@ -88,6 +86,10 @@ export default function  RegiStration(){
             </div>
           </div>
         </div>
+
+
+      
+
       </section>
     )
 

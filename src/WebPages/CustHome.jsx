@@ -39,7 +39,7 @@ export default function CustWelcome (){
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <div class="col-md-6 p-lg-5 mx-auto my-5">
       <h1 class="display-5 fw-bold">Welcome To Home Glow Services</h1>
-      <h3 class="fw-normal text-muted mb-3">Connect us for better cleaning experience</h3>
+      <h3 class="fw-normal text-muted mb-3">Contact us for better cleaning experience</h3>
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
         <a class="icon-link" href="#">
           Learn more
