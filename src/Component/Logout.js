@@ -9,14 +9,23 @@ export const Logout = () => {
     const navigate = useNavigate();
     const handleLogout = (e) => {
         e.preventDefault();
+        alert("You are Succesfully Logged out");
         dispatch(logout());
         navigate('/login')
-    }
+        // Remove the 'pass' item from local storage
+        localStorage.removeItem('pass');
 
+        // Remove the 'myData' item from local storage
+        localStorage.removeItem('uname');
+
+        
+    }
+    
+    
     
   return (
     <center>
-        <p> Logged in : {mystate.loggedIn.toString()} </p>
+        {/* <p> Logged in : {mystate.loggedIn.toString()} </p> */}
       <div >
       <h4 className='mx-2'>Are you sure you want to log out?</h4>
       <button onClick={handleLogout} className='btn btn-outline-danger mx-2 mt-2'>Logout</button>

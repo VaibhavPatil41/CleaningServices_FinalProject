@@ -8,8 +8,9 @@ const { useReducer, useState } = require("react");
 
 
 
-export default function  RegiStration(){
+export default function  RegiStration1(){
 
+  const[buttonDisable,setButtonDisable]=useState(false)
 
   const init = {
     name :   {value:"",valid:false , touched:false , error:""},
@@ -19,9 +20,10 @@ export default function  RegiStration(){
     dob: {value:"",valid:false , touched:false , error:""},
     username:{value:"",valid:false , touched:false , error:""},
     password:{value:"",valid:false , touched:false , error:""},
-    role_id: {value:"",valid:false , touched:false , error:""}
+    // role_id: {value:"",valid:false , touched:false , error:""}
+    formValid:false
     
-}
+  }
 
 const reducer = (state,action) => {
     switch(action.type)
@@ -45,12 +47,12 @@ const validateData = (key,val) => {
     let error = ""
     switch(key)
     {
-        case 'name':
-            var pattern = /^[A-Z]{1}[a-z]{1,} [A-Z]{1}[a-z]{1,}$/ 
+        case 'username':
+            var pattern = /^[A-Z]{1}\w{7,15}$/    // [A-Z]{1}[a-z]{1,}
             if(!pattern.test(val))
             {
                 valid = false;
-                error = "First Letter of Name and Surname Should be Capital "
+                error = "First Letter of Username should be capital and contain 8-15 characters"
             }
             break;
         
@@ -71,6 +73,30 @@ const validateData = (key,val) => {
                 error = "Please Enter valid Email"
             }
             break;
+        case 'dob':
+                
+            const currentDate = new Date("01/01/2006");
+            const enteredDateObj = new Date(val);
+
+            if (isNaN(enteredDateObj)) {
+                valid = false;
+                error = "Please enter a valid date of birth";
+            }
+            
+            else if (enteredDateObj > currentDate) {
+                valid = false;
+                error = "Age Should be greater than 18";
+            }
+            break;
+        case 'contactno':
+
+            var pattern= /^\d{10}$/;
+            if(!pattern.test(val))
+            {
+            valid = false;
+            error = "Contact number should be 10 digits"
+            }
+            break;
 
     }
     return { valid: valid, error: error}
@@ -86,7 +112,7 @@ const handleChange = (key,value) => {
     for(let k in user)
     {
        
-        if(user[k].valid === false)
+        if(user[k].valid == false || user[k].touched == false )
         {
             formValid = false;
             break;
@@ -115,22 +141,21 @@ const submitData = (e) =>{
             dob : user.dob.value,
             username : user.username.value,
             password : user.password.value,
-            role_id : user.role_id.value
+            role_id : 3
         })
     };
 
     fetch("http://localhost:8081/userRegister",reqOption)
     .then(resp => resp.text())
-    .then(str => {    navigate('/login')})
-    //     if(str=="true")
-    //     {
-    //         navigate('/login');
-    //     }
-    //     return setMsg(str)
-    // })
-    
-    
-
+    .then(str => {
+        // if(str=="true")
+        // {
+        //     //navigate('/login');
+        // }
+        // return setMsg(str)
+        alert("Successfully added Customer")
+        navigate('/login');
+    })
 }
     
   //const mystate = useSelector(state=>state.logged)
@@ -138,6 +163,7 @@ const submitData = (e) =>{
     return(
         // <section class="vh-100 bg-image" style="background-image: ${img};">
         <section class="vh-100 bg-image" >
+        
           {/* <p> Logged in : {mystate.loggedIn.toString()} </p> */}
 
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -149,69 +175,75 @@ const submitData = (e) =>{
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
       
                     <form>
+                    
                     <div class="form-outline mb-3">
-                        
-                        <label for="role">Role &nbsp;</label>
-                        <select
-                            name="role_id"
-                            value={user.role_id.value}
-                            onChange={(e) => handleChange("role_id", e.target.value)}
-                          >
-                            <option>Select Role</option>
-                            <option value="3">Customer</option>
-                            <option value="2">Service Provider</option>
-                          </select>
-                        <br/>
-                        
-                    </div>
-                        {}
-                    <div class="form-outline mb-3">
+                    <label class="form-label" for="form3Example1cg">Enter Name</label>
                         <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" value={user.name.value}
                 onChange={(e)=>{handleChange("name",e.target.value)}} />
-                        <label class="form-label" for="form3Example1cg">Enter Name</label>
+                        
                         
                     </div>
                     <div class="form-outline mb-3">
+                    <label class="form-label" for="form3Example1cg">Enter Email</label>
                         <input type="email" id="form3Example1cg" class="form-control form-control-lg" name="email" value={user.email.value}
-                onChange={(e)=>{handleChange("email",e.target.value)}}/>
-                        <label class="form-label" for="form3Example1cg">Enter Email</label>
+                onChange={(e)=>{handleChange("email",e.target.value)}} placeholder="example@gmail.com"/>
+                        
+                        <div className="text-danger" style={{ display: (!user.email.valid)  ?"block":"none"}}>
+                {user.email.error}
+            </div>
                     </div>
+                    
+                    <label class="form-label" for="form3Example1cg">Enter Contact No</label>
                     <div class="form-outline mb-3">
+                      
                         <input type="number" id="form3Example1cg" class="form-control form-control-lg"  name="contactno" value={user.contactno.value}
                 onChange={(e)=>{handleChange("contactno",e.target.value)}}/>
-                        <label class="form-label" for="form3Example1cg">Enter Contact No</label>
+                        <div className="text-danger" style={{ display: (!user.contactno.valid)  ?"block":"none"}}>
+                          {user.contactno.error}
+                        </div>
                     </div>
+
                     <div class="form-outline mb-3">
+                    <label class="form-label" for="form3Example1cg">Enter Address</label>
                         <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="address" value={user.address.value}
                 onChange={(e)=>{handleChange("address",e.target.value)}}/>
-                        <label class="form-label" for="form3Example1cg">Enter Address</label>
+                        
                     </div>
                     <div class="form-outline mb-3">
+                    <label class="form-label" for="form3Example1cg">Date Of Birth</label>
                         <input type="date" id="form3Example1cg" class="form-control form-control-md" name="dob" value={user.dob.value}
                 onChange={(e)=>{handleChange("dob",e.target.value)}}/>
-                        <label class="form-label" for="form3Example1cg">Date Of Birth</label>
+                        <div className="text-danger" style={{ display: (!user.dob.valid)  ?"block":"none"}}>
+                {user.dob.error}
+            </div>
                     </div>
       
 
                       <div class="form-outline mb-3">
+                      <label class="form-label" for="form3Example1cg">Enter Username</label>
                         <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="username" value={user.username.value}
                 onChange={(e)=>{handleChange("username",e.target.value)}}/>
-                        <label class="form-label" for="form3Example1cg">Enter Username</label>
+                        <div className="text-danger" style={{ display: (!user.username.valid)  ?"block":"none"}}>
+                {user.username.error}
+            </div>
                       </div>
       
                       <div class="form-outline mb-3">
+                        <label class="form-label" for="form3Example4cdg">Enter password</label>
                         <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="password" value={user.password.value}
                 onChange={(e)=>{handleChange("password",e.target.value)}}/>
-                        <label class="form-label" for="form3Example4cdg">Enter password</label>
+                        <div className="text-danger" style={{ display: (!user.password.valid)  ?"block":"none"}}>
+                {user.password.error}
+            </div>
                       </div>
       
                       {/* <div class="form-outline mb-3">
                         <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                        <label class="form-label" for="form3Example4cg">Confirm Password</label>
+                        <label class="form-label" for="form3Example4cg">Confirm Password</label>    {loginData.formValid }  {!validateData.valid }
                       </div> */}
       
                       <div class="d-flex justify-content-center">
-                        <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body" onClick={(e)=>{submitData(e)}} >Register</button>
+                        <button type="button" class="btn  btn-outline-info btn-block btn-lg gradient-custom-4 text-body" onClick={(e)=>{submitData(e)}} disabled={!user.formValid}>Register</button>
                       </div>
       
                       <p class="text-center text-muted mt-5 mb-0">Already have an account? 

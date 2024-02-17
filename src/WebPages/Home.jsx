@@ -23,7 +23,8 @@ export default function Home (){
           </a></li>
           <li class="nav-item"><a class="nav-link" href="/Login" onClick={(e)=>{"/Login"}}>Login</a></li>
           <li class="nav-item"><a class="nav-link" href="#"></a></li>
-          <li class="nav-item"><a class="nav-link" href="/Register">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="/regsp">Register as Service Provider</a></li>
+          <li class="nav-item"><a class="nav-link" href="/regcus">Register as Customer</a></li>
           <li class="nav-item"><a class="nav-link" href="#"></a></li>
           <li class="nav-item"><a class="nav-link" href="/Contacts">Contact us?</a></li>
           
