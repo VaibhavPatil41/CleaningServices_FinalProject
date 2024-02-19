@@ -1,0 +1,12 @@
+Day 1: 
+  Database Schema decide.
+  ER diagram creation.
+
+Day 2:
+  Use case.
+  Workflow Diagram.
+  
+Day 3: 
+  Database changes and finalization with Inserting data.
+  React LoginPage.
+  React Regitrastion page.
