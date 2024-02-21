@@ -6,8 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cleaningServices.entities.Login;
 import com.cleaningServices.entities.User;
 import com.cleaningServices.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -43,6 +46,19 @@ public class UserService {
 	public User getUserByLoginId(int id) {
 		return urepo.getUserByLoginId(id);
 	}
+	////////////////////////
+	public User getUserByLoginId(Login login) {
+		return urepo.getUserByLogin(login);
+		
+	}
+	
+	@Transactional
+	public int updateUser(String name, String email, String contactno, String address, String dob,int lid) {
+		
+		return urepo.updateUser(name,email,contactno,address,dob,lid);
+	}
+
+	
 
 //	public List<User> getAllVendors() {
 //		

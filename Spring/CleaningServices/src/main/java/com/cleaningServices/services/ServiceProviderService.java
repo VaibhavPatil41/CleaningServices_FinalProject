@@ -10,6 +10,8 @@ import com.cleaningServices.entities.Login;
 import com.cleaningServices.entities.ServiceProvider;
 import com.cleaningServices.repository.ServiceProviderRepo;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ServiceProviderService {
 	@Autowired
@@ -87,9 +89,24 @@ public class ServiceProviderService {
 	
 
 	
-	public ServiceProvider getSp(Integer loginId) {
-		System.out.println("in sprepo"+loginId);
-	    return sprepo.getSP(loginId);
+	public ServiceProvider getSp(int login_id) {
+		System.out.println("in sprepo"+login_id);
+	    return sprepo.getSP(login_id);
+	}
+	
+	@Transactional
+	public int updateSp(String name, String email, String contactno, String address, String license_id, int loginid) {
+		
+		return sprepo.updateSp(name,email,contactno,address,license_id,loginid);
+	}
+	
+	public ServiceProvider getSPBySname(String name) {
+		return sprepo.findByName(name);
+	}
+	
+	public ServiceProvider getSPBySPId(int id) {
+		
+		return sprepo.getSPBySPId(id);
 	}
 
 
