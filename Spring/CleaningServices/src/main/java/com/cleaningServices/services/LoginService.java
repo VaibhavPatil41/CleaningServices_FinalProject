@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.cleaningServices.entities.Login;
 import com.cleaningServices.repository.Login_repo;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class LoginService {
 
@@ -25,6 +27,11 @@ public class LoginService {
 			 return lrepo.getUserByUsername(uname);
 		}
 		
+		@Transactional
+		public int updateLogin(String username, String password,int lid) {
+			
+			return lrepo.updateLogin(username,password,lid);
+		}
 		/*public int getLoginByUsernamepass(String uname,String pass)
 		{
 			System.out.println(uname+" "+pass);
