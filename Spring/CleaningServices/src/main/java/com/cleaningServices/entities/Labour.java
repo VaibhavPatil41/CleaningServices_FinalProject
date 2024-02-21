@@ -27,6 +27,9 @@ public class Labour {
 	@Column
 	String pan_no;
 	
+	@Column
+	int status;
+	
 	@ManyToOne
 	@JoinColumn(name="sp_id")
 	ServiceProvider sp_id;
@@ -36,13 +39,19 @@ public class Labour {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Labour(String name, String contactno, String pan_no, ServiceProvider sp_id) {
+	
+
+	public Labour(String name, String contactno, String pan_no, int status, ServiceProvider sp_id) {
 		super();
+		
 		this.name = name;
 		this.contactno = contactno;
 		this.pan_no = pan_no;
+		this.status = status;
 		this.sp_id = sp_id;
 	}
+
+
 
 	public int getLabour_id() {
 		return labour_id;
@@ -80,7 +89,17 @@ public class Labour {
 		return sp_id;
 	}
 
-	public void setSid(ServiceProvider sp_id) {
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+
+	public void setSp_id(ServiceProvider sp_id) {
 		this.sp_id = sp_id;
 	}
 	

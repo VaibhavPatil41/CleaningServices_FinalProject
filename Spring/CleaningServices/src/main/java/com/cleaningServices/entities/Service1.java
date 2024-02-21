@@ -20,20 +20,29 @@ public class Service1 {
 	private String sname;
 	
 	@ManyToOne
-	  @JoinColumn(name="sp_id")
-		ServiceProvider sid;
+	@JoinColumn(name="sp_id")
+	ServiceProvider sid;
 	
+	@ManyToOne
+	  @JoinColumn(name="catid")
+		Category catid;
+	
+	@OneToOne
+	@JoinColumn(name="labour_id")
+	Labour labour_id;
+	
+	@Column
+	private int status;
 
 
-	public Service1(String description, double price, String sname, ServiceProvider sid) {
-		super();
-		
-		this.description = description;
-		this.price = price;
-		this.sname = sname;
-		this.sid=sid;
-		//this.labour_id=labour_id;
-	}
+//	public Service1(String description, double price, String sname, ServiceProvider sid) {
+//		super();
+//		
+//		this.description = description;
+//		this.price = price;
+//		this.sname = sname;
+//		this.sid=sid;
+//	}
 
 	public int getService_id() {
 		return service_id;
@@ -78,6 +87,49 @@ public class Service1 {
 	public Service1() {
 		super();
 	}
+
+	
+
+	
+
+	public Service1( String description, double price, String sname, ServiceProvider sid, Category catid,
+			Labour labour_id, int status) {
+		super();
+		
+		this.description = description;
+		this.price = price;
+		this.sname = sname;
+		this.sid = sid;
+		this.catid = catid;
+		this.labour_id = labour_id;
+		this.status = status;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Category getCatid() {
+		return catid;
+	}
+
+	public void setCatid(Category catid) {
+		this.catid = catid;
+	}
+
+	public Labour getLabour_id() {
+		return labour_id;
+	}
+
+	public void setLabour_id(Labour labour_id) {
+		this.labour_id = labour_id;
+	}
+
+	
 
 
 	
