@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 export default function ApproveReq() {
     const [emps, setEmps] = useState([]);
     let navigate = useNavigate();
+    let [refreshCount, setCount] = useState(0);
+    let x=true;
 
      //Automatically call when call
     useEffect(() => {
@@ -11,9 +13,12 @@ export default function ApproveReq() {
         fetch("http://localhost:8081/aproveReq")
             .then(resp => resp.json())
             .then(data => setEmps(data));
-    }, []);
+    },[refreshCount]);
 
     const HandleAccept = (e, spId) => {
+        
+        
+
         e.preventDefault();
         alert(`Approved ${spId}`);
         
@@ -29,14 +34,18 @@ export default function ApproveReq() {
             .then((response) => { return response.json(); })
             .then((data) => {})
             .catch((error) => {});     
-
-            navigate('/approve');
+        setCount(++refreshCount)
+            //e.preventDefault();
+            //navigate('/adminWelcome');
             
         
-            
+        
+        
+        //window.location.reload()
         // fetch("http://localhost:8081/approve")
         // .then((response)=>{return response.json()})
         // .then((data)=>{});
+        
     }
 
     
@@ -56,6 +65,7 @@ export default function ApproveReq() {
             .then((response) => { return response.json(); })
             .then((data) => {})
             .catch((error) => {}); 
+            setCount(++refreshCount)
     }
 
     const HandleChange = (e, spId) => {
