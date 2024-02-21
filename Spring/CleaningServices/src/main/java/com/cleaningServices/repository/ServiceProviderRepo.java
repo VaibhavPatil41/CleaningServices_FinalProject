@@ -32,13 +32,20 @@ public interface ServiceProviderRepo extends JpaRepository<ServiceProvider , Int
 	@Transactional
 	@Query("UPDATE ServiceProvider sp SET sp.status = 1 WHERE sp.sp_id = :id")
 	public void approveSp(int id);
-
-
 	
-	@Query("select sp from ServiceProvider sp where sp.login_id.loginid = :id")
-	public ServiceProvider getSP(Integer id);  
+	@Query("select sp from ServiceProvider sp where login_id.loginid = :id")
+	public ServiceProvider getSP(int id);  
+	
+	@Modifying
+	@Query(value="update serviceprovider sp SET sp.name=:name,sp.email=:email,sp.contactno=:contactno,sp.address=:address,sp.license_id=:license_id WHERE login_id=:loginid",nativeQuery = true)
+	public int updateSp(String name, String email, String contactno, String address, String license_id, int loginid);
 	
 
+	public ServiceProvider findByName(String name);
+	
+	
+	@Query("select sp from ServiceProvider sp where sp_id =:id")
+	public ServiceProvider getSPBySPId(int id);
 	
 	
 	
