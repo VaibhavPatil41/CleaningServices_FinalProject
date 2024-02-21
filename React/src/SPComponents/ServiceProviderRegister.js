@@ -147,7 +147,7 @@ const submitData = (e) =>{
         //     navigate('/login');
         // }
         // return setMsg(str)
-        navigate('/login');
+        navigate('/');
     })
     
     
