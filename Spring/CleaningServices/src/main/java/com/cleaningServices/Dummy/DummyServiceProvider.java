@@ -25,6 +25,11 @@ public class DummyServiceProvider {
 		this.role_id = role_id;
 		this.status = status;
 	}
+	
+	//For Updating Service 
+	
+	
+	
 	public DummyServiceProvider() {
 		super();
 		// TODO Auto-generated constructor stub
