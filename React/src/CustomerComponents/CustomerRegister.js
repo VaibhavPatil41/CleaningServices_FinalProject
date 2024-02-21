@@ -1,8 +1,14 @@
 import { useSelector } from "react-redux"
-
+import { useEffect } from "react";
+import { Nav, NavDropdown,Navbar,Container} from "react-bootstrap";
 import { Component } from "react"
 // import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import Login from "../Component/Login";
+import RegiStrationS from "../SPComponents/ServiceProviderRegister";
+import AboutUs from "../landingPages/AboutUs";
+import ContactUs from "../landingPages/ContactUs";
+import Footer from "../landingPages/Footer";
 
 const { useReducer, useState } = require("react");
 
@@ -154,14 +160,78 @@ const submitData = (e) =>{
         // }
         // return setMsg(str)
         alert("Successfully added Customer")
-        navigate('/login');
+        navigate('/');
     })
 }
+////////////////////////////////////////
+const Navigate = useNavigate();
+    const[selectedLink, setSelectedLink] = useState("Home");
+
+    const handleLinkClick = (link)=>{
+        setSelectedLink(link);
+       // Navigate(`/${link}`)
+    };
+
+    useEffect(()=>{
+        setSelectedLink('Home')
+    },[]);
+
+    const renderComponent = ()=>{
+        switch(selectedLink){
+            case "aboutus": 
+               return <AboutUs/>
+            case "login":
+                 return <Login/>
+            case "ContactUs":
+                 return <ContactUs/>
+            case "regsp":
+                 return <RegiStrationS/>
+            case "regcus":
+                 return <RegiStration1/>
+            default:
+              return null;
+        }
+    }
     
   //const mystate = useSelector(state=>state.logged)
 
     return(
-        // <section class="vh-100 bg-image" style="background-image: ${img};">
+      // <div>
+      //   <div>
+      //       {renderComponent()}
+      //   </div>
+      //         <div container mt-3>
+      //         <div>
+      //         <header >
+      //         <div>
+      //           <Navbar bg="dark" variant="dark" expand="lg"  >
+      //             <Container>
+      //               <Navbar.Brand href="/">Home Glove Cleaning Services</Navbar.Brand>
+      //               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      //               <Navbar.Collapse id="basic-navbar-nav">
+      //                 <Nav className="ml-auto">
+      //                   <Nav.Link  onClick={()=>{handleLinkClick('aboutus')}}>About Us</Nav.Link>
+      //                   <Nav.Link onClick={()=>{handleLinkClick('ContactUs')}}>Contact Us</Nav.Link>
+      //                   <Nav.Link  onClick={() => handleLinkClick('login')}>  <i className='fas fa-user'></i> Log In</Nav.Link>
+      //                   <NavDropdown
+      //                     id="nav-dropdown-primary-example"
+      //                     title="Register"
+      //                     menuVariant="light">
+      //                     {/* <NavDropdown.Item onClick={()=>{handleLinkClick('regsp')}}>Trekking club</NavDropdown.Item>
+      //                     <NavDropdown.Item onClick={()=> {handleLinkClick('regcus')}}>Trekker</NavDropdown.Item> */}
+      //                     <a href="/regcus"class="fw-bold text-body mx-2"><u>Customer</u></a><br/>
+      //                           <a href="/regsp" class="fw-bold text-body mx-2"><u>Service Provider</u></a>
+      //                   </NavDropdown>
+      //                 </Nav>
+      //               </Navbar.Collapse>
+      //             </Container>
+      //           </Navbar>
+      //         </div>
+      //       </header>
+      //         </div>
+      //         </div>
+      <div>
+        {/* // <section class="vh-100 bg-image" style="background-image: ${img};"> */}
         <section class="vh-100 bg-image" >
         
           {/* <p> Logged in : {mystate.loggedIn.toString()} </p> */}
@@ -250,9 +320,12 @@ const submitData = (e) =>{
                             <a href="/login" class="fw-bold text-body"><u>Login here</u></a></p>
       
                     </form>
+                    
       
                   </div>
+                  
                 </div>
+                
               </div>
             </div>
           </div>
@@ -262,5 +335,7 @@ const submitData = (e) =>{
       
 
       </section>
+      {/* <Footer/> */}
+      </div>
     )
     }
