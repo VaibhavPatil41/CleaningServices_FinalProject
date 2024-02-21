@@ -215,5 +215,20 @@ public class UserController {
     	System.out.println(sp);
 	    return sp;
 	}
-  
+
+	//Customer Feedback..
+	@PostMapping("/feedback")
+	public Feedback givefeedback(@RequestBody Dummyfeedback feed,@RequestParam int service_id,@RequestParam int user_id )
+	{
+		Feedback f=null;
+    	
+    	Service1 service = ss.findBySid(service_id); 
+    	User user = uservice.findByUid(user_id);
+
+    	f = fservice.addfeedback(new Feedback(service,user,feed.getRating(),feed.getComment()));
+    	System.out.println(f);
+	    return f;
+	}
+
+	
 }
