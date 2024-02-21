@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
-import AboutUs from "../components/AboutUs";
-import ContactUs from "../components/ContactUs";
-import UserLogin from "../components/UserLogin";
-import UserRegistration from "../components/UserRegistration";
-import ClubRegistration from '../ClubComponent/ClubRegistration';
+// import AboutUs from "../components/AboutUs";
+// import ContactUs from "../components/ContactUs";
+// import UserLogin from "../components/UserLogin";
+// import UserRegistration from "../components/UserRegistration";
+// import ClubRegistration from '../ClubComponent/ClubRegistration';
 
 import Header from "./Header";
 import Footer from "./Footer";
 import { Nav, NavDropdown,Navbar,Container} from "react-bootstrap";
+import Login from "../Component/Login";
+import RegiStration1 from "../CustomerComponents/CustomerRegister";
+import RegiStrationS from "../SPComponents/ServiceProviderRegister";
+import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
 
 export default function LandingPage(){
     const Navigate = useNavigate();
@@ -25,16 +30,16 @@ export default function LandingPage(){
 
     const renderComponent = ()=>{
         switch(selectedLink){
-            case "AboutUs": 
-              return <AboutUs/>
-            case "UserLogin":
-                return <UserLogin/>
+            case "aboutus": 
+               return <AboutUs/>
+            case "login":
+                 return <Login/>
             case "ContactUs":
-                return <ContactUs/>
-            case "UserRegistration":
-                return <UserRegistration/>
-            case "ClubRegistration":
-                return <ClubRegistration/>
+                 return <ContactUs/>
+            case "regsp":
+                 return <RegiStrationS/>
+            case "regcus":
+                 return <RegiStration1/>
             default:
               return null;
         }
@@ -49,19 +54,21 @@ export default function LandingPage(){
         <div>
           <Navbar bg="dark" variant="dark" expand="lg"  >
             <Container>
-              <Navbar.Brand href="/">Sahyadri Navigator</Navbar.Brand>
+              <Navbar.Brand href="/">Home Glove Cleaning Services</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                  <Nav.Link  onClick={()=>{handleLinkClick('AboutUs')}}>About Us</Nav.Link>
+                  <Nav.Link  onClick={()=>{handleLinkClick('aboutus')}}>About Us</Nav.Link>
                   <Nav.Link onClick={()=>{handleLinkClick('ContactUs')}}>Contact Us</Nav.Link>
-                  <Nav.Link  onClick={() => handleLinkClick('UserLogin')}>  <i className='fas fa-user'></i> Sign In</Nav.Link>
+                  <Nav.Link  onClick={() => handleLinkClick('login')}>  <i className='fas fa-user'></i> Log In</Nav.Link>
                   <NavDropdown
                     id="nav-dropdown-primary-example"
                     title="Register"
                     menuVariant="light">
-                    <NavDropdown.Item onClick={()=>{handleLinkClick('ClubRegistration')}}>Trekking club</NavDropdown.Item>
-                    <NavDropdown.Item onClick={()=> {handleLinkClick('UserRegistration')}}>Trekker</NavDropdown.Item>
+                    <NavDropdown.Item onClick={()=>{handleLinkClick('regcus')}}>Customer</NavDropdown.Item>
+                    <NavDropdown.Item onClick={()=> {handleLinkClick('regsp')}}>Service Provider</NavDropdown.Item>
+                    {/* <a href="/regcus"class="fw-bold text-body mx-2"><u>Customer</u></a><br/>
+                          <a href="/regsp" class="fw-bold text-body mx-2"><u>Service Provider</u></a> */}
                   </NavDropdown>
                 </Nav>
               </Navbar.Collapse>

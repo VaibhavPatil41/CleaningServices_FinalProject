@@ -12,7 +12,7 @@ export default function Header() {
   };
     return (
     <div>
-      <header >
+      <header>
         <div>
           <Navbar bg="dark" variant="dark" expand="lg"  >
             <Container>
