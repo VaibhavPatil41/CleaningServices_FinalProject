@@ -112,8 +112,10 @@ const submitData = (e) =>{
             pan_no : user.pan_no.value
         })
     };
-        const unm=localStorage.getItem('myData');
-    fetch("http://localhost:8081/addLabour?name="+unm,reqOption)
+    
+    const uname=localStorage.getItem('uname');
+
+    fetch("http://localhost:8081/addLabour?name="+uname,reqOption)
     .then(resp => resp.text())
     .then(str => { alert("Labour Added")
         if(str=="true")
@@ -124,11 +126,14 @@ const submitData = (e) =>{
         navigate("/spWelcome");
     })
     .catch((error) => {navigate("/addlabour")});  
+
+    window.location.reload();
     
 
 }
 const HandleChange = (e, spId) => {
   navigate('/spWelcome')
+  window.location.reload();
 }
     
   //const mystate = useSelector(state=>state.logged)

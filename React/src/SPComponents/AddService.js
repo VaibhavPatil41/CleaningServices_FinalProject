@@ -8,15 +8,16 @@ const { useReducer, useState } = require("react");
 
 
 
-export default function  AddLabour(){
-
+export default function  AddService(){
 
   const init = {
     sname :  {value:"",valid:false , touched:false , error:""},
     description : {value:"",valid:false , touched:false , error:""},
     price: {value:"",valid:false , touched:false , error:""}
     
-}
+  }
+
+
 
 const reducer = (state,action) => {
     switch(action.type)
@@ -112,8 +113,11 @@ const submitData = (e) =>{
             price : user.price.value
         })
     };
-        const unm=localStorage.getItem('myData');
-    fetch("http://localhost:8081/addService?name="+unm,reqOption)
+    
+    const uname=localStorage.getItem('uname');
+    // const sp_id=localStorage.getItem('sp_id');
+        
+    fetch("http://localhost:8081/addService?name="+uname,reqOption)
     .then(resp => resp.text())
     .then(str => {
       alert("Service added succesfully")
