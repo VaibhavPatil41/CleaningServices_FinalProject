@@ -11,12 +11,18 @@ export const Logout = () => {
         e.preventDefault();
         alert("You are Succesfully Logged out");
         dispatch(logout());
-        navigate('/login')
+        navigate('/')
         // Remove the 'pass' item from local storage
-        localStorage.removeItem('pass');
+        //localStorage.removeItem('pass');
 
         // Remove the 'myData' item from local storage
-        localStorage.removeItem('uname');
+        // localStorage.removeItem('uname');      
+        // localStorage.removeItem('sp_id');
+        // localStorage.removeItem('email');
+        // localStorage.removeItem('license_id');
+        // localStorage.removeItem('sp_name')
+        localStorage.clear();
+;
 
         
     }

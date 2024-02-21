@@ -5,6 +5,7 @@ import { useNavigate,Link } from "react-router-dom"
 import { login } from "../loggedSlice";
 
 import { Component, useReducer, useState } from "react"
+import CustWelcome from "../CustomerComponents/CustHome";
 // import img from "../Component/re"
 
 export default function  Login(){
@@ -131,13 +132,18 @@ export default function  Login(){
               // alert(data.password);
               // alert(loginData.uname);
               alert("welcome ");
-              navigate('/adminWelcome')
+             
               localStorage.setItem('pass', loginData.pass);
               localStorage.setItem('uname', loginData.uname);
+              // /////////////////////////
+              // localStorage.setItem('loginData', loginData);
+              // alert(loginData.uname)
+              /////////////////
+              navigate('/adminWelcome')
             }
             else{
               alert("Invalid Credentials")
-              navigate('/login')
+              return
             }
           
           // alert("welcome admin");
@@ -146,15 +152,35 @@ export default function  Login(){
         if(data.role.role_id==3){
             if(data.username==loginData.uname && data.password==loginData.pass)
             {
-              // alert(data.username);
-              // alert(data.password);
-              // alert(loginData.uname);
-              alert("welcome ");
-              navigate('/custWelcome')
+              
+              const options = {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify(data.loginid) 
+              };
+          
+              fetch("http://localhost:8081/getCust", options)
+                .then((response) => { return response.json(); })
+                .then((data) => {
+                  
+                    //User Details in local Storage
+                    
+                    localStorage.setItem('user_id', data.user_id);
+                    localStorage.setItem('email', data.name);
+                    localStorage.setItem('name', data.login_id);
+                   // localStorage.setItem('login_id', data.name);
+                    
+                  
+                  
+                })
+                .catch((error) => {}); 
+                    localStorage.setItem('pass', loginData.pass);
+                    localStorage.setItem('uname', loginData.uname);
+                navigate('/custWelcome')
             }
             else{
               alert("Invalid Credentials")
-              navigate('/login')
+              return
             }
         }
 
@@ -176,6 +202,14 @@ export default function  Login(){
                 .then((data) => {
                   if(data.status==1)
                   {
+                    //localStorage.setItem('pass', loginData.pass);
+                    localStorage.setItem('uname', loginData.uname);
+                    /////////////////
+                    localStorage.setItem('sp_id', data.sp_id);
+                    localStorage.setItem('email', data.email);
+                    localStorage.setItem('license_id', data.license_id);
+                    localStorage.setItem('sp_name', data.name);
+                    
                     navigate('/spWelcome')
                   }
                   else{
@@ -187,7 +221,7 @@ export default function  Login(){
           }
           else{
             alert("Invalid Credentials")
-              navigate('/login')
+            return
           }
 
           // const options = {
@@ -285,11 +319,9 @@ export default function  Login(){
                         {/* <p class="text-center text-muted mt-5 mb-0">New User?
                         <Link to="/reg"><u>SignUp Here</u></Link></p> */}
 
-                        <p class="text-center text-muted mt-5 mb-0">New here?<a href="/regcus"
-                          class="fw-bold text-body mx-2"><u>Customer</u></a>
-
-                          <a href="/regsp"
-                          class="fw-bold text-body mx-2"><u>Service Provider</u></a>
+                        <p class="text-center text-muted mt-5 mb-0">New here?
+                          <a href="/regcus"class="fw-bold text-body mx-2"><u>Customer</u></a>
+                          <a href="/regsp" class="fw-bold text-body mx-2"><u>Service Provider</u></a>
                         </p>
 
                   
