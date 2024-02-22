@@ -7,36 +7,14 @@ const { useReducer, useState , useEffect} = require("react");
 
 export default function ConfirmBooking() {
 
-    const service_id = localStorage.getItem('service_id');
-const user_id = localStorage.getItem('user_id');
-const sp_id = localStorage.getItem('sp_id');
-
-
-    const [labs, setLabs] = useState(null);
-    useEffect(() => {
-        fetch("http://localhost:8081/viewAllLabour?service_id=" +service_id)
-            .then(resp => resp.json())
-            .then(data => setLabs(data));
-           
-    }, []);
-    
-    const [emps, setEmps] = useState(null);
-
-    useEffect(() => {
-        fetch("http://localhost:8081/getService?id=" + service_id)
-            .then(resp => resp.json())
-            .then(data => setEmps(data));
-            
-    }, []);
-
     const init = {
-        address:   {value:"",valid:false , touched:false , error:""},
-        date :  {value:"",valid:false , touched:false , error:""},
-       
+        date :   {value:"",valid:false , touched:false , error:""},
+        address :   {value:"",valid:false , touched:false , error:""},
+        
+        
         
     }
-
-
+    
     const reducer = (state,action) => {
         switch(action.type)
         {
@@ -49,47 +27,42 @@ const sp_id = localStorage.getItem('sp_id');
                 return init;        
         }
     }
-
+    
     const[user,dispatch]=useReducer(reducer,init)
     const[msg,setMsg]=useState("")
+    
     var navigate=useNavigate();
-    const submitData = (e) =>{
-        e.preventDefault();
-       
-    
-    
-    
-        const reqOption={
-            method:"POST",
-            headers:{'content-type':'application/json'},
-            body:JSON.stringify({
+    const validateData = (key,val) => {
+        let valid = true;
+        let error = ""
+        switch(key)
+        {
+            case 'date':
                 
-                date : user.date.value,
-                address : user.address.value,
-                
-            })
-        };
-            
-        console.log(sp_id)
-        console.log(service_id)
-        console.log(user_id)
-        fetch("http://localhost:8081/book?sp_id=" + parseInt(sp_id) + "&pk_id=" + parseInt(service_id) + "&user_id=" + parseInt(user_id), reqOption)
-        //fetch("http://localhost:8081/book?sp_id="+1+"&pk_id="+23+"&user_id="+2, reqOption)
-        .then(resp => resp.text())
-        .then(str => {
-            if(str=="true")
-            {
-                navigate('/login');
+            const currentDate = new Date();
+            const enteredDateObj = new Date(val);
+
+            if (isNaN(enteredDateObj)) {
+                valid = false;
+                error = "Please enter a valid date";
             }
-            return setMsg(str)
-        })
-        
-        navigate('/custWelcome')
+            
+            else if (enteredDateObj < currentDate) {
+                valid = false;
+                error = "Date should be in the future";
+            }
+            break;
+                
+
     
+        }
+        return { valid: valid, error: error}
     }
+    
+    
     const handleChange = (key,value) => {
-   
-        //const {valid, error} = validateData(key,value);
+       
+        const {valid, error} = validateData(key,value);
     
        
         let formValid = true;
@@ -103,13 +76,51 @@ const sp_id = localStorage.getItem('sp_id');
             }
         }
         
- 
+        console.log(formValid);
+        console.log("------");
+    
        
-        dispatch({type: "update",data:{key,value,touched:true}})
+        dispatch({type: "update",data:{key,value,touched:true,valid,error,formValid}})
     }
 
-   
+    const service_id = localStorage.getItem('service_id');
+    const user_id = localStorage.getItem('user_id');
+    const sp_id = localStorage.getItem('sp_id');
+    const [labs, setLabs] = useState(null);
+    const [emps, setEmps] = useState(null);
 
+    useEffect(() => {
+        fetch("http://localhost:8081/getService?id=" + service_id)
+            .then(resp => resp.json())
+            .then(data => setEmps(data));
+            
+    }, []);
+
+
+    
+    useEffect(() => {
+        fetch("http://localhost:8081/viewAllLabour?service_id=" +service_id)
+            .then(resp => resp.json())
+            .then(data => setLabs(data));
+           
+    }, []);
+
+    const submitData = (e) =>{
+        e.preventDefault();
+
+        const reqOption = {
+            method: "POST",
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                date: user.date.value,
+                address: user.address.value,
+            })
+        };
+        
+
+    
+    }
+ 
     return (
       
         <div className="mask d-flex align-items-center h-100 gradient-custom-3 mt-5">
@@ -149,6 +160,9 @@ const sp_id = localStorage.getItem('sp_id');
                                     <label htmlFor="date">Select Date:</label>
                                     <input type="date" className="form-control" id="date" name="date" value={user.date.value}
                                         onChange={(e)=>{handleChange("date",e.target.value)}}/>
+                                        <div className="text-danger" style={{ display: (!user.date.valid)  ?"block":"none"}}>
+                                                {user.date.error}
+                                        </div>
                                 </div>
     
                                 <div className="form-group">
