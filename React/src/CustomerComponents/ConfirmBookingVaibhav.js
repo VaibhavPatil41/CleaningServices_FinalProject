@@ -90,6 +90,7 @@ export default function ConfirmBooking() {
     const [emps, setEmps] = useState(null);
 
     useEffect(() => {
+
         fetch("http://localhost:8081/getService?id=" + service_id)
             .then(resp => resp.json())
             .then(data => setEmps(data));
@@ -172,7 +173,7 @@ export default function ConfirmBooking() {
                                 </div>
     
                                 <div className="text-center">
-                                    <button className="btn btn-outline-info mt-4" onClick={(e)=>{submitData(e)}}>Confirm Booking</button>
+                                    <button className="btn btn-outline-info mt-4" onClick={(e)=>{submitData(e)}} disabled={!user.formValid}>Confirm Booking</button>
                                 </div>
                             </div>
                         </div>
