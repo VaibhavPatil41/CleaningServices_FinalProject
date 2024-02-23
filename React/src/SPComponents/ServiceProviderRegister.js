@@ -141,13 +141,14 @@ const submitData = (e) =>{
 
     fetch("http://localhost:8081/spRegister",reqOption)
     .then(resp => resp.text())
-    .then(str => {alert("done")
+    .then(str => {//alert("done")
         // if(str=="true")
         // {
         //     navigate('/login');
         // }
         // return setMsg(str)
         navigate('/');
+        window.location.reload();
     })
     
     

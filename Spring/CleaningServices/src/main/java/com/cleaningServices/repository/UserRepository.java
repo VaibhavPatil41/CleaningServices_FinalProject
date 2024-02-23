@@ -23,7 +23,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value="update User u set u.name=:name,u.email=:email,u.contactno=:contactno,u.address=:address,u.dob=:dob WHERE u.login_id=:lid",nativeQuery = true)
 	public int updateUser(String name, String email, String contactno, String address, String dob,int lid);
 	
-	
+	@Query(value="select * from User where user_id=:user_id",nativeQuery = true)
+	public User findByUid(int user_id);
 
 //	@Query(value="select * from users where shop_name is not null",nativeQuery = true)
 //	public List<User> findAllVendors();

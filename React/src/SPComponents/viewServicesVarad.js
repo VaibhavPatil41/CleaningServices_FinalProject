@@ -38,8 +38,8 @@ export default function ViewServicesSP() {
                                 <td>{v.sname}</td>
                                 <td>{v.description}</td>
                                 <td>{v.price}</td>
-                                <td> <a onClick={()=>{navigate('/updateService',{state: v})}}><button class="btn btn-info rounded-pill px-3" type="button">EDIT</button></a> </td> 
-                                <td> <a onClick={()=>{navigate('/deleteService',{state: v})}}><button class="btn btn-danger rounded-pill px-3" type="button">DELETE</button></a> </td>
+                                {/* <td> <a onClick={()=>{navigate('/updateService',{state: v})}}><button class="btn btn-info rounded-pill px-3" type="button"  >EDIT</button></a> </td> 
+                                <td> <a onClick={()=>{navigate('/deleteService',{state: v})}}><button class="btn btn-danger rounded-pill px-3" type="button" >DELETE</button></a> </td> */}
                                 <br/>
                             </tr>
                         )

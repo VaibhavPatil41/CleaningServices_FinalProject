@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.cleaningServices.entities.BookingEntity;
 import com.cleaningServices.repository.BookingRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BookingService {
 
@@ -42,8 +44,30 @@ public class BookingService {
 		
 		return bookrepo.findBySpId(sp_id);
 	}
+	
+	public void paymentReceived(int booking_id) {
+		
+		bookrepo.paymentReceived(booking_id);
+	}
+	
+
+	@Transactional
+	public int updateLabour(int labour_id,int booking_id) {
+		
+		return bookrepo.updateLabourId(labour_id,booking_id);
+	}
 
 
+	@Transactional
+	public int updatePayment(int booking_id) {
+		
+		return bookrepo.updatePayment(booking_id);
+	}
+	
+
+	public BookingEntity findByBookingID(int booking_id) {
+		return bookrepo.findByBookingID(booking_id);
+	}
 	
 	
 }

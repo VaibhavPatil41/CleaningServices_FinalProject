@@ -37,9 +37,14 @@ public class LabourService {
 		return lrepo.findByname(lname);
 	}
 	
-	public void changeStatus(int labour_id) {
+	public int engageLabour(int labour_id) {
 		System.out.println(labour_id);
-		 lrepo.changeStatus(labour_id);
+		return lrepo.engageLabour(labour_id);
+	}
+	
+	public int freeStatus(int labour_id) {
+		System.out.println("hi "+labour_id);
+		 return lrepo.freeStatus(labour_id);
 	}
 
 
@@ -122,7 +127,10 @@ public Labour getLabourByServiceProviderId(int labour_id) {
 	}
 	
 	
-
+public Labour getLabourIdById(int lab_id) {
+	return lrepo. findLabourById(lab_id);
+	
+}
 
 
 

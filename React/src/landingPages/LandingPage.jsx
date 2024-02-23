@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
+import bG from './bg1.jpg';
 // import AboutUs from "../components/AboutUs";
 // import ContactUs from "../components/ContactUs";
 // import UserLogin from "../components/UserLogin";
@@ -52,9 +53,10 @@ export default function LandingPage(){
         <div>
         <header >
         <div>
+       
           <Navbar bg="dark" variant="dark" expand="lg"  >
             <Container>
-              <Navbar.Brand href="/">Home Glove Cleaning Services</Navbar.Brand>
+              <Navbar.Brand href="/">Home Glow Cleaning Services</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
@@ -70,20 +72,27 @@ export default function LandingPage(){
                     {/* <a href="/regcus"class="fw-bold text-body mx-2"><u>Customer</u></a><br/>
                           <a href="/regsp" class="fw-bold text-body mx-2"><u>Service Provider</u></a> */}
                   </NavDropdown>
+                  
                 </Nav>
               </Navbar.Collapse>
+       
+
             </Container>
           </Navbar>
         </div>
       </header>
         </div>
         </div>
-        
+        <div style={{ position: 'relative' }}>
+                <img src={bG} height={1000} width={1600} style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }} />
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                    {renderComponent()}
+                </div>
+                        
 
-        <div>
-            {renderComponent()}
+         
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         </>
     )
 }

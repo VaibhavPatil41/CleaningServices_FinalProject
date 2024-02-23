@@ -109,6 +109,13 @@ public class ServiceProviderService {
 		return sprepo.getSPBySPId(id);
 	}
 
+	public void rejectSP(int sp_id) {
+		sprepo.rejectSP(sp_id);
+		
+	}
+	
+	
+
 
 	
 }

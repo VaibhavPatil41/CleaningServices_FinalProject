@@ -62,6 +62,11 @@ public class Service_Service {
 		return srepo.findBycatid(catid);
 	}
 	
+public Service1 findBySid(int sid) {
+		
+		return srepo.findById(sid);
+	}
+	
 	
 //	public Service1 updateService(String desc, double price) {
 //		

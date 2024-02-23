@@ -116,7 +116,7 @@ const submitData = (e) =>{
     
     const uname=localStorage.getItem('uname');
     // const sp_id=localStorage.getItem('sp_id');
-        
+    
     fetch("http://localhost:8081/addService?name="+uname,reqOption)
     .then(resp => resp.text())
     .then(str => {

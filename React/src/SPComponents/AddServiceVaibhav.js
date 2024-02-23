@@ -107,7 +107,7 @@ export default function AddService() {
                 //sp_id: sp_id,
                 spname:  sp_name ,               //
                 status: 1,
-                labour_name:user.labour_name.value,
+                // labour_name:user.labour_name.value,
                 //catid: user.category.value
                 catname: user.category.value
                 
@@ -204,7 +204,7 @@ export default function AddService() {
                                             </div> */}
                                             </div>
 
-                                            <div className="form-outline mb-3">
+                                            {/* <div className="form-outline mb-3">
                                             <label className="form-label" htmlFor="labour_name">Allocate Labour</label>
 
                                                 <select
@@ -224,12 +224,12 @@ export default function AddService() {
                                                             );
                                                         })
                                                     }
-                                                </select>
+                                                </select> */}
 
                                             {/* <div className="text-danger" style={{ display: (!user.contactno.valid) ? "block" : "none" }}>
                                                 {user.contactno.error}
                                             </div> */}
-                                            </div>
+                                            {/* </div> */}
                                         <div className="d-flex justify-content-center">
                                             <button type="button" className="btn btn-outline-info btn-block btn-lg gradient-custom-4 text-body" onClick={(e) => { submitData(e) }}>Add Package </button>
                                         </div>

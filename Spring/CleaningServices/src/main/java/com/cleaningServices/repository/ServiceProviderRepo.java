@@ -48,6 +48,11 @@ public interface ServiceProviderRepo extends JpaRepository<ServiceProvider , Int
 	public ServiceProvider getSPBySPId(int id);
 	
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE ServiceProvider sp SET sp.status = 2 WHERE sp.sp_id = :id")
+	public void rejectSP(int id);
+	
 	
 
 }

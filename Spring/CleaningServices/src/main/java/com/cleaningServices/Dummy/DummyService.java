@@ -6,7 +6,7 @@ public class DummyService {
 	
 	private String description;
 
-	private double price;
+	private int price;
 	
 	private String sname;
 	
@@ -14,22 +14,10 @@ public class DummyService {
 	
 	private int status;
 	
-	private String labour_name;
-	
 	private  String catname;
 	
 	
 	
-	public DummyService(String catname, String description, double price, String sname, String spname, int status,String labour_name) {
-		super();
-		this.catname = catname;
-		this.description = description;
-		this.price = price;
-		this.sname = sname;
-		this.spname = spname;
-		this.status = status;
-		this.labour_name =labour_name;
-	}
 	
 	
 	public DummyService() {
@@ -53,11 +41,11 @@ public class DummyService {
 		this.description = description;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -86,15 +74,18 @@ public class DummyService {
 	}
 
 
-	public String getLabour_name() {
-		return labour_name;
+	public DummyService(String description, int price, String sname, String spname, int status, String catname) {
+		super();
+		this.description = description;
+		this.price = price;
+		this.sname = sname;
+		this.spname = spname;
+		this.status = status;
+		this.catname = catname;
 	}
 
 
-	public void setLabour_name(String labour_name) {
-		this.labour_name = labour_name;
-	}
-
+	
 	
 	
 

@@ -39,6 +39,9 @@ public class BookingEntity {
 	
 	@Column
 	int payment_status;
+	
+	@Column
+	int labour_id;
 
 	
 	
@@ -51,7 +54,7 @@ public class BookingEntity {
 	
 
 	public BookingEntity(User user_id, ServiceProvider sp_id, Service1 service_id, String address, String date,
-			int payment_status) {
+			int payment_status,int labour_id) {
 		super();
 		this.user_id = user_id;
 		this.sp_id = sp_id;
@@ -59,6 +62,7 @@ public class BookingEntity {
 		this.address = address;
 		this.date = date;
 		this.payment_status = payment_status;
+		this.labour_id = labour_id;
 	}
 
 
@@ -117,6 +121,18 @@ public class BookingEntity {
 
 	public void setPayment_status(int payment_status) {
 		this.payment_status = payment_status;
+	}
+
+
+
+	public int getLabour_id() {
+		return labour_id;
+	}
+
+
+
+	public void setLabour_id(int labour_id) {
+		this.labour_id = labour_id;
 	}
 	
 	

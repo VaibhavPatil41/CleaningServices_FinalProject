@@ -49,12 +49,20 @@ public interface LabourRepository extends JpaRepository<Labour, Integer>{
 	@Modifying
 	@Transactional
 	@Query("UPDATE Labour SET status = 1  WHERE labour_id = :lid")
-	public void changeStatus(int lid);
+	public int engageLabour(int lid);
 
 	@Query(value="select * from labour where labour_id=:labour_id",nativeQuery=true)
 	public Labour findLabourById(int labour_id);
 	
+	////maintain status of labour 1 => 0
+	@Modifying
+	@Transactional
+	@Query("UPDATE Labour SET status = 0  WHERE labour_id = :lid")
+	public int freeStatus(int lid);
 	
+//	@Query(value="select * from labour where labour_id=:labour_id",nativeQuery=true)
+//	public Labour findLabourById(int labour_id);
+
 	}
 
 

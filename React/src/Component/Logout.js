@@ -9,7 +9,7 @@ export const Logout = () => {
     const navigate = useNavigate();
     const handleLogout = (e) => {
         e.preventDefault();
-        alert("You are Succesfully Logged out");
+       // alert("You are Succesfully Logged out");
         dispatch(logout());
         navigate('/')
         // Remove the 'pass' item from local storage

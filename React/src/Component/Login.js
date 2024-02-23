@@ -13,6 +13,11 @@ export default function  Login(){
    // const [login, setspData] = useState({loginid: "",username: "",password:"",role.role_id,role_name});
    const [loginId, setLoginId] = useState();
    const [roleId, setRoleId] = useState();
+   const [msg, setMsg] = useState("");
+
+   //For invalid credentials
+   const [invalid, setInvalid] = useState(false);
+
 
    //=====================================
    //Validations
@@ -123,26 +128,30 @@ export default function  Login(){
       .then((data)=>{
         
         //alert(data.loginid)
-        //alert(data.role.role_id)
+        // if(data == undefined)
+        // {
+        //   setMsg("Enter the Valid Details")
+        //   return
+        // }
+        //setMsg("Enter the Valid Details")
 
         if(data.role.role_id==1){
           if(data.username==loginData.uname && data.password==loginData.pass)
             {
-              // alert(data.username);
-              // alert(data.password);
-              // alert(loginData.uname);
-              alert("welcome ");
-             
               localStorage.setItem('pass', loginData.pass);
               localStorage.setItem('uname', loginData.uname);
               // /////////////////////////
               // localStorage.setItem('loginData', loginData);
               // alert(loginData.uname)
               /////////////////
+              //alert("hi")
+              
               navigate('/adminWelcome')
             }
             else{
-              alert("Invalid Credentials")
+              setInvalid(true)
+              setMsg("Enter the Valid Details")
+              //alert("Invalid Credentials")
               return
             }
           
@@ -179,18 +188,16 @@ export default function  Login(){
                 navigate('/custWelcome')
             }
             else{
-              alert("Invalid Credentials")
+              setMsg("Enter the Valid Details")
+              //alert("Invalid Credentials")
               return
             }
-        }
-
-        if(data.role.role_id==2){
+          }
+          if(data.role.role_id==2){
           ////////////////////////
           if(data.username==loginData.uname && data.password==loginData.pass)
           {
-            // alert(data.username);
-            //   alert(data.password);
-            //   alert(loginData.uname);
+           
             const options = {
               method: "POST",
               headers: {"Content-Type": "application/json"},
@@ -213,41 +220,25 @@ export default function  Login(){
                     navigate('/spWelcome')
                   }
                   else{
-                    alert("You are Not Authorized");
+                    setMsg("You Are Not Authorized")
+                    //alert("You are Not Authorized");
                   }
                   
                 })
                 .catch((error) => {}); 
           }
           else{
-            alert("Invalid Credentials")
+            setMsg("Enter the Valid Details")
+            //alert("Invalid Credentials")
             return
           }
 
-          // const options = {
-          //   method: "POST",
-          //   headers: {"Content-Type": "application/json"},
-          //   body: JSON.stringify(data.loginid) 
-          // };
-        
-          // fetch("http://localhost:8081/getSP", options)
-          //     .then((response) => { return response.json(); })
-          //     .then((data) => {
-          //       if(data.status==1)
-          //       {
-          //         navigate('/spWelcome')
-          //       }
-          //       else{
-          //         alert("You are Not Authorized");
-          //       }
-                
-          //     })
-          //     .catch((error) => {});    
-
+         
           
         }
          
-      })  
+      })  //setMsg("Enter the Valid Details")
+      .catch((error) => {setMsg("Enter the Valid Details")});
     };
     
 
@@ -296,7 +287,11 @@ export default function  Login(){
                             }));
                           }}
                         />
+
                         <label class="form-label" for="form3Example4cdg">Enter password</label>
+                        <div style={{ color: "red" }}>
+                            {msg}
+                        </div>
                       </div>
                       <div className="text-danger" style={{ display: (!user.pass.valid)  ?"block":"none"}}>
                           {user.pass.error}
@@ -312,7 +307,11 @@ export default function  Login(){
                            }}
                           >Login</button>
                       </div>
-      
+
+                      {/* <div style="display: {{ invalid ? 'block' : 'none' }}">
+                          Invalid Credentials
+                      </div>
+       */}
                       {/* <p class="text-center text-muted mt-5 mb-0">New User?<a href="#!"
                           class="fw-bold text-body"><u>SignUp Here</u></a></p> */}
 
@@ -323,7 +322,7 @@ export default function  Login(){
                           <a href="/regcus"class="fw-bold text-body mx-2"><u>Customer</u></a>
                           <a href="/regsp" class="fw-bold text-body mx-2"><u>Service Provider</u></a>
                         </p>
-
+                          
                   
       
                     </form>

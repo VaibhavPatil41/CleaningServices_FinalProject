@@ -159,8 +159,9 @@ const submitData = (e) =>{
         //     //navigate('/login');
         // }
         // return setMsg(str)
-        alert("Successfully added Customer")
+        //alert("Successfully added Customer")
         navigate('/');
+        window.location.reload();
     })
 }
 ////////////////////////////////////////

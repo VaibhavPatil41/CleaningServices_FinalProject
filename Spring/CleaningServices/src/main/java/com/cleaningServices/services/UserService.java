@@ -58,7 +58,10 @@ public class UserService {
 		return urepo.updateUser(name,email,contactno,address,dob,lid);
 	}
 
-	
+public User findByUid(int user_id) {
+		
+		return urepo.findByUid(user_id);
+	}
 
 //	public List<User> getAllVendors() {
 //		
